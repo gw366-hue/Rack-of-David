@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE NETATORIUM — Rack of David</title>
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a0a0a;
+    color: #e0e0e0;
+    font-family: 'DM Mono', monospace;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header {
+    width: 100%;
+    padding: 1.5rem 1.5rem 0.75rem;
+    border-bottom: 1px solid #222;
+  }
+
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+  }
+
+  .institution {
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #666;
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  .title {
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: #fff;
+    line-height: 1.2;
+  }
+
+  .subtitle {
+    font-size: 0.65rem;
+    color: #555;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 0.35rem;
+  }
+
+  .viewer-container {
+    width: 100%;
+    flex: 1;
+    min-height: 50vh;
+    position: relative;
+  }
+
+  model-viewer {
+    width: 100%;
+    height: 100%;
+    min-height: 50vh;
+    background: #0a0a0a;
+    --poster-color: #0a0a0a;
+  }
+
+  model-viewer::part(default-ar-button) {
+    background: #fff;
+    color: #000;
+    border: none;
+    border-radius: 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.75rem 1.5rem;
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+
+  .info {
+    width: 100%;
+    padding: 1rem 1.5rem 2rem;
+    border-top: 1px solid #222;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    font-size: 0.6rem;
+    color: #555;
+    letter-spacing: 0.05em;
+  }
+
+  .info-label {
+    text-transform: uppercase;
+    color: #444;
+    font-size: 0.5rem;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.15rem;
+  }
+
+  .info-value {
+    color: #888;
+  }
+
+  .description {
+    margin-top: 1rem;
+    font-size: 0.65rem;
+    line-height: 1.7;
+    color: #555;
+    max-width: 40ch;
+  }
+
+  .classification {
+    margin-top: 1rem;
+    font-size: 0.5rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #333;
+    padding-top: 0.75rem;
+    border-top: 1px solid #1a1a1a;
+  }
+
+  .loading-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #0a0a0a;
+    z-index: 10;
+    transition: opacity 0.5s ease;
+  }
+
+  .loading-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .loading-text {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #444;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <div>
+      <div class="title">Rack of David</div>
+      <div class="subtitle">Carrara marble, fiber optic, Cat6e — 2026</div>
+    </div>
+    <div class="institution">
+      National Artificial<br>Intelligence Authority
+    </div>
+  </div>
+</div>
+
+<div class="viewer-container">
+  <model-viewer
+    id="viewer"
+    src="Rack_of_david_optimized.glb"
+    ar
+    ar-modes="webxr scene-viewer quick-look"
+    ar-scale="fixed"
+    camera-controls
+    touch-action="pan-y"
+    auto-rotate
+    auto-rotate-delay="0"
+    rotation-per-second="12deg"
+    shadow-intensity="0.4"
+    shadow-softness="0.8"
+    exposure="0.9"
+    environment-image="neutral"
+    camera-orbit="45deg 75deg auto"
+    min-camera-orbit="auto auto auto"
+    max-camera-orbit="auto auto auto"
+    interaction-prompt="none"
+    loading="eager"
+  >
+    <div class="loading-overlay" id="loading">
+      <div class="loading-text">Loading exhibit...</div>
+    </div>
+  </model-viewer>
+</div>
+
+<div class="info">
+  <div class="info-grid">
+    <div>
+      <div class="info-label">Medium</div>
+      <div class="info-value">Carrara marble, server hardware</div>
+    </div>
+    <div>
+      <div class="info-label">Dimensions</div>
+      <div class="info-value">2.4 × 0.8 × 0.6 m</div>
+    </div>
+    <div>
+      <div class="info-label">Gallery</div>
+      <div class="info-value">The Netatorium</div>
+    </div>
+    <div>
+      <div class="info-label">Accession No.</div>
+      <div class="info-value">NAIA-2026-0042</div>
+    </div>
+  </div>
+  <div class="description">
+    The Netatorium opens the data center to the American public for the first time. Walk the server halls. See the power infrastructure that sustains continuous computation.
+  </div>
+  <div class="classification">Document Class III — Public Access</div>
+</div>
+
+<script>
+  const viewer = document.getElementById('viewer');
+  const loading = document.getElementById('loading');
+  viewer.addEventListener('load', () => {
+    loading.classList.add('hidden');
+  });
+</script>
+
+</body>
+</html>
